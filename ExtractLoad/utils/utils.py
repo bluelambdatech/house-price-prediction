@@ -6,6 +6,12 @@ from decouple import config
 
 from io import StringIO
 
+import logging
+logging.basicConfig(level=logging.INFO)
+
+
+logger = logging.info(__name__)
+
 
 class ReadWriteFromS3:
     """This class is used to read and write to s3"""
@@ -15,6 +21,7 @@ class ReadWriteFromS3:
         access_key = config("aws_access_key")
 
         s3_conn = boto3.resource("s3", aws_access_key_id = access_key, aws_secret_access_key = secret_key)
+        logging.info("Creating the connection strings")
 
         return cls(conn=s3_conn, bucket_name=bucket_name, key=key)
 
@@ -36,6 +43,7 @@ class ReadWriteFromS3:
         file_name = f"{self.key}/{file_name}.csv"
         csv_buffer = StringIO()
         df.to_csv(csv_buffer, index=False)
+        logging.info("Writing the dataframe to s3 bucket")
         self.conn.Object(self.bucket_name, file_name).put(Body=csv_buffer.getvalue())
 
     def create_bucket(self, bucket_name):
