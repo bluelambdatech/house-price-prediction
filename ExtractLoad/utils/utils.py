@@ -46,9 +46,13 @@ class ReadWriteFromS3:
         logging.info("Writing the dataframe to s3 bucket")
         self.conn.Object(self.bucket_name, file_name).put(Body=csv_buffer.getvalue())
 
-    def create_bucket(self, bucket_name):
-        pass
-
+    def create_s3_bucket(self):
+        """
+        Creates an S3 bucket with the given name
+        """
+        # Create an S3 client
+        self.conn.create_bucket(Bucket=self.bucket_name, CreateBucketConfiguration={'LocationConstraint': 'eu-west-2'})
+        print(f'S3 bucket {self.bucket_name} created successfully')
 
 def get_data(url):
     data_df = pd.read_csv(url, na_values=["nan", "n.a", "not available", "?", "NAN"])
