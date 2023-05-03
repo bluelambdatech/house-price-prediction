@@ -33,6 +33,14 @@ class ReadWriteFromS3:
     def readFromS3(self):
         pass
 
+    # def cleanData(self):
+    #     df = get_data("https://raw.githubusercontent.com/Amberlynnyandow/dsc-1-final-project-online-ds-ft-021119/master/kc_house_data.csv")
+    #     df['date'] = pd.to_datetime(df['date'])
+    #     df.insert(2, 'day', df['date'].dt.day)
+    #     df.insert(3, 'month', df['date'].dt.month)
+    #     df.insert(4, 'year', df['date'].dt.year)
+    #     print(df.head())
+
     def writeToS3(self, df, file_name):
         """
         This method writes any file type to s3 bucket
