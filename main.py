@@ -8,7 +8,6 @@ logging.basicConfig(level=logging.INFO)
 
 ########    Data Extraction   ##################
 
-
 def get_and_write_to_s3():
     """
     This function extract the data from the url and write to s3
@@ -25,6 +24,7 @@ def get_and_write_to_s3():
     logging.info("Created S3 successfully")
 
     #logging.info("Extracting the data from the URL")
+
     df = get_data("https://raw.githubusercontent.com/Amberlynnyandow/dsc-1-final-project-online-ds-ft-021119/master/kc_house_data.csv")
     df['date'] = pd.to_datetime(df['date'])
     df.insert(2, 'day', df['date'].dt.day)
@@ -41,7 +41,16 @@ def get_and_write_to_s3():
     writetos3.writeToS3(df=df,
                        file_name="house_price")
 
-    logging.info("Done")
+    logging.info("Reading from S3 bucket")
+    bucket_name = "uk-naija-datascience-21032023"
+    key = "season1.json"
+    readfroms3 = ReadWriteFromS3.create_con_string(bucket_name=bucket_name,
+                                                   key=key)
+    readfile = readfroms3.read_s3_file(10)
+    print(readfile)
+
+
+
 
 
 if __name__ == "__main__":
