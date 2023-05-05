@@ -48,7 +48,7 @@ class ReadWriteFromS3:
                 df = pd.read_excel(buffer)
             else:
                 print(f"This file type {file_ext} cannot be handled at this time. Please try again later")
-                quit(400)
+                exit(403)
         elif file_ext == "json":
             df = pd.read_json(io.BytesIO(obj.get()['Body'].read()))
         elif file_ext == "parquet":

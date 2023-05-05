@@ -14,15 +14,14 @@ def get_and_write_to_s3():
     This function extract the data from the url and write to s3
     :return: None
     """
-    # logging.info("Creating an S3 bucket")
-    # try:
-    #     createbucket = ReadWriteFromS3.create_con_string(bucket_name="testing-123-nene-bucket", key="dev-uk-key")
-    #     createbucket.create_s3_bucket()
-    # except:
-    #     print("bucket already exists!!!")
-    #     exit (403)
+    logging.info("Creating an S3 bucket")
+    try:
+        createbucket = ReadWriteFromS3.create_con_string(bucket_name="testing-123-nene-bucket", key="dev-uk-key")
+        createbucket.create_s3_bucket()
+    except:
+        print("bucket already exists!!!")
 
-    # logging.info("Created S3 successfully")
+    logging.info("Created S3 successfully")
 
     logging.info("Extracting the data from the URL")
 
@@ -46,7 +45,7 @@ def get_and_write_to_s3():
 
     logging.info("Reading from S3 bucket")
     bucket_name = "uk-naija-datascience-21032023"
-    key = "Sales-Data.xls"
+    key = "uk-gdp-countries.parquet"
     print(f"Reading file with name {key} from S3 bucket")
     readfroms3 = ReadWriteFromS3.create_con_string(bucket_name=bucket_name,
                                                    key=key)
