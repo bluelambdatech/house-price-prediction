@@ -1,4 +1,5 @@
-url:
-  - https://raw.githubusercontent.com/Amberlynnyandow/dsc-1-final-project-online-ds-ft-021119/master/kc_house_data.csv
+url: https://raw.githubusercontent.com/Amberlynnyandow/dsc-1-final-project-online-ds-ft-021119/master/kc_house_data.csv
 
-bucket_name: houseprediction23
+s3_params:
+  bucket_name: "uknaija-bucket-06052023"
+  Key: "dev-uk-key"
