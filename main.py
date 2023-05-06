@@ -8,7 +8,10 @@ logging.basicConfig(level=logging.INFO)
 
 ########    Data Extraction   ##################
 
-def get_and_write_to_s3():
+bucket_name="uknaija-bucket-"
+key="dev-uk-key"
+
+def get_and_write_to_s3(bucket_name, key):
     pass
     """
     This function extract the data from the url and write to s3
@@ -16,7 +19,7 @@ def get_and_write_to_s3():
     """
     logging.info("Creating an S3 bucket")
     try:
-        createbucket = ReadWriteFromS3.create_con_string(bucket_name="testing-123-nene-bucket", key="dev-uk-key")
+        createbucket = ReadWriteFromS3.create_con_string()
         createbucket.create_s3_bucket()
     except:
         print("bucket already exists!!!")
