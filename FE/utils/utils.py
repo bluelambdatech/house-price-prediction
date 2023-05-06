@@ -7,6 +7,9 @@ class FeatureEngineering:
         self.df = df
 
     def extractDayMonthYear(self):
+        """
+
+        """
         self.df['date'] = pd.to_datetime(self.df['date'])
         self.df.insert(2, 'day', self.df['date'].dt.day)
         self.df.insert(3, 'month', self.df['date'].dt.month)
