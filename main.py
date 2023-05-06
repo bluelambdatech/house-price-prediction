@@ -1,15 +1,15 @@
 """Written by Omolewa"""
 
 from ExtractLoad.utils.utils import ReadWriteFromS3, get_data
-
+import botocore
 import logging
 import pandas as pd
 logging.basicConfig(level=logging.INFO)
 
 ########    Data Extraction   ##################
 
-bucket_name="uknaija-bucket-"
-key="dev-uk-key"
+bucket = "uknaija-bucket-06052023"
+Key = "dev-uk-key"
 
 def get_and_write_to_s3(bucket_name, key):
     pass
@@ -19,10 +19,10 @@ def get_and_write_to_s3(bucket_name, key):
     """
     logging.info("Creating an S3 bucket")
     try:
-        createbucket = ReadWriteFromS3.create_con_string()
+        createbucket = ReadWriteFromS3.create_con_string(bucket_name, key)
         createbucket.create_s3_bucket()
     except:
-        print("bucket already exists!!!")
+        print("Bucket name already exist!!!")
 
     logging.info("Created S3 successfully")
 
@@ -49,7 +49,7 @@ def get_and_write_to_s3(bucket_name, key):
     logging.info("Reading from S3 bucket")
     bucket_name = "uk-naija-datascience-21032023"
     key = "uk-gdp-countries.parquet"
-    print(f"Reading file with name {key} from S3 bucket")
+    logging.info(f"Reading file with name {key} from S3 bucket")
     readfroms3 = ReadWriteFromS3.create_con_string(bucket_name=bucket_name,
                                                    key=key)
     readfile = readfroms3.read_s3_file()
@@ -60,7 +60,7 @@ def get_and_write_to_s3(bucket_name, key):
 
 
 if __name__ == "__main__":
-    get_and_write_to_s3()
+    get_and_write_to_s3(bucket_name=bucket, key=Key)
 
 
 #Tasks:
