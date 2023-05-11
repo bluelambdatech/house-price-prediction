@@ -18,8 +18,8 @@ def get_and_write_to_s3():
     logging.info("Done with data extraction")
 
     logging.info("Writing the dataframe to s3 bucket")
-    writetos3 = ReadWriteFromS3.create_con_string(bucket_name="houseprice23",
-                                                  key="dev/train")
+    writetos3 = ReadWriteFromS3.create_con_string(bucket_name="housepriceproject",
+                                                  key="dev/train2")
 
     writetos3.writeToS3(df=df,
                         file_name="house_price")
