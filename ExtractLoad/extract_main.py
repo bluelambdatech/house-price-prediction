@@ -59,8 +59,4 @@ if __name__ == "__main__":
     get_and_write_to_s3(bucket_name=bucket, key=Key)
 
 
-#Tasks:
-#1. Write a method that will create an S3 bucket if it doesn’t exist already - DONE
-#2.  Write a code to extract the date column into day, month and year -DONE
-#3. Update the class to populate the other methods- read from s3.
 
