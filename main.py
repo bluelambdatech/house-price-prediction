@@ -8,17 +8,19 @@ params = load_yaml("param.yaml")
 
 bucket = params["s3_params"]["bucket_name"]
 Key = params["s3_params"]["Key"]
+filename = params["s3_params"]["file_name"]
+url = load_yaml("param.yaml")["url"]
 
 
-extract_main.get_and_write_to_s3(bucket_name=bucket, key = Key)
+extract_main.get_and_write_to_s3(bucket_name=bucket, key = Key, url=url, filename=filename)
 
 
 #### Transform #######
 
 # Load the dataframe that you wrote to s3
-df =
-transform = FeatureEngineering(df)
-transform.run_process()
+# df =
+# transform = FeatureEngineering(df)
+# transform.run_process()
 # w,rite back to s3
 
 
