@@ -1,32 +1,27 @@
-"""Written by Omolewa"""
+from ExtractLoad import extract_main
+from FE.utils.utils import FeatureEngineering
+from general_utils import load_yaml
 
-from ExtractLoad.utils.utils import ReadWriteFromS3, get_data
+##### Extract ##############
 
-import logging
-logging.basicConfig(level=logging.INFO)
+params = load_yaml("param.yaml")
 
-########    Data Extraction   ##################
-
-
-def get_and_write_to_s3():
-    """
-    This function extract the data from the url and write to s3
-    :return: None
-    """
-    logging.info("Extracting the data from the URL")
-    df = get_data("https://raw.githubusercontent.com/Amberlynnyandow/dsc-1-final-project-online-ds-ft-021119/master/kc_house_data.csv")
-    logging.info("Done with data extraction")
-
-    logging.info("Writing the dataframe to s3 bucket")
-    writetos3 = ReadWriteFromS3.create_con_string(bucket_name="houseprice23",
-                                                  key="dev/train")
-
-    writetos3.writeToS3(df=df,
-                        file_name="house_price")
-
-    logging.info("Done")
+bucket = params["s3_params"]["bucket_name"]
+Key = params["s3_params"]["Key"]
+filename = params["s3_params"]["file_name"]
+url = load_yaml("param.yaml")["url"]
 
 
-if __name__ == "__main__":
-    get_and_write_to_s3()
+extract_main.get_and_write_to_s3(bucket_name=bucket, key = Key, url=url, filename=filename)
 
+
+#### Transform #######
+
+# Load the dataframe that you wrote to s3
+# df =
+# transform = FeatureEngineering(df)
+# transform.run_process()
+# w,rite back to s3
+
+
+#### Model
