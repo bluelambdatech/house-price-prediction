@@ -1,0 +1,6 @@
+url: https://raw.githubusercontent.com/Amberlynnyandow/dsc-1-final-project-online-ds-ft-021119/master/kc_house_data.csv
+
+s3_params:
+  bucket_name: "uknaija-bucket-20052024-bucket"
+  Key: "dev/training"
+  file_name: "raw_data_"

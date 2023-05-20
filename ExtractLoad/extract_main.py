@@ -1,11 +1,11 @@
 """Written by Omolewa"""
 
 from ExtractLoad.utils.utils import ReadWriteFromS3, get_data
-from general_utils import load_yaml
-import botocore
+# from general_utils import load_yaml
+# import botocore
 import logging
-import yaml
-import pandas as pd
+# import yaml
+# import pandas as pd
 from datetime import datetime
 
 logging.basicConfig(level=logging.INFO)
@@ -39,7 +39,7 @@ def get_and_write_to_s3(bucket_name, key, url, filename):
     logging.info("Writing the dataframe to s3 bucket")
     writetos3 = ReadWriteFromS3.create_con_string(bucket_name, key)
 
-    current_time = datetime.now().strftime("%d%m%Y%H%M%S")
+    current_time = datetime.now().strftime("%d-%m-%Y:%H:%M:%S")
     filename = f'{filename}_{current_time}'
     writetos3.writeToS3(df=df,
                         file_name=filename)

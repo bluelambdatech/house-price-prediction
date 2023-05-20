@@ -3,3 +3,4 @@ url: https://raw.githubusercontent.com/Amberlynnyandow/dsc-1-final-project-onlin
 s3_params:
   bucket_name: "uknaija-bucket-06052023"
   Key: "dev-uk-key"
+  file_name: raw_data_
